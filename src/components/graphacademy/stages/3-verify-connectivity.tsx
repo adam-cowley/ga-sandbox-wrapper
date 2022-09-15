@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Sandbox } from "../graphacademy/types/sandbox";
+import { Sandbox } from "../types/sandbox";
 import neo4j, { Driver } from 'neo4j-driver'
-import Loading from "../graphacademy/loading";
+import Loading from "../loading";
 
 interface VerifyConnectivityProps {
     sandbox: Sandbox;
@@ -10,7 +10,7 @@ interface VerifyConnectivityProps {
 }
 
 export function VerifyConnectivity({ sandbox, setDriver, setError }: VerifyConnectivityProps) {
-    const maxAttempts = 20
+    const maxAttempts = process.env.REACT_APP_VERIFY_CONNECTIVITY_ATTEMPTS || 20
     const [ attempt, setAttempt ] = useState<number>(1)
 
     useEffect(() => {

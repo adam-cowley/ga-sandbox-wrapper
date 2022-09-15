@@ -1,13 +1,14 @@
 
 import { Alert } from '@neo4j-ndl/react';
-import React, { useState,  useEffect } from 'react'
+import React, { useState } from 'react'
 import { GraphAcademyContext } from './graph-academy.context'
 import { Sandbox } from './types/sandbox';
 import { Driver } from 'neo4j-driver'
 
-import { GetSandboxCredentials } from '../stages/1-get-credentials';
-import { WaitForSandboxIp } from '../stages/2-wait-for-ip';
-import { VerifyConnectivity } from '../stages/3-verify-connectivity';
+import { GetSandboxCredentials } from './stages/1-get-credentials';
+import { WaitForSandboxIp } from './stages/2-wait-for-ip';
+import { VerifyConnectivity } from './stages/3-verify-connectivity';
+import { Neo4jProvider } from 'use-neo4j';
 
 
 interface GraphAcademyProviderProps {
@@ -33,7 +34,7 @@ export default function GraphAcademyProvider(props: GraphAcademyProviderProps) {
             </div>
         )
     }
-    
+
     // 1. Load Sandbox for use case
     else if ( !sandbox ) {
         return <GetSandboxCredentials
@@ -63,7 +64,10 @@ export default function GraphAcademyProvider(props: GraphAcademyProviderProps) {
     // 4. Render application
     return (
         <GraphAcademyContext.Provider value={{ sandbox, driver, }}>
-            {props.children}
+            {/* @ts-ignore */}
+            <Neo4jProvider driver={driver}>
+                {props.children}
+            </Neo4jProvider>
         </GraphAcademyContext.Provider>
     )
 }

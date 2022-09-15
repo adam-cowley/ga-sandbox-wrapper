@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import Loading from '../graphacademy/loading';
-import { Sandbox } from "../graphacademy/types/sandbox"
-import { getSandboxForCourse } from '../graphacademy/utils';
+import Loading from '../loading';
+import { Sandbox } from "../types/sandbox"
+import { getSandboxForCourse } from '../utils';
 
 interface GetSandboxCredentialsProps {
     setSandbox: (sandbox: Sandbox) => void;

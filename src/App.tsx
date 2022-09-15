@@ -1,17 +1,13 @@
-import React, { useContext } from 'react';
-
 import './App.css';
-import { GraphAcademyContext } from './components/graphacademy/graph-academy.context';
+import Editor from './components/editor/editor';
+import Frames from './components/result/frames';
 
 function App() {
-  const context = useContext(GraphAcademyContext)
-  const { driver, sandbox } = context
-
   return (
     <div className="App">
       ✅ running
-      <pre>{JSON.stringify(sandbox, null, 2)}</pre>
-      {/* <pre>{JSON.stringify(driver, null, 2)}</pre> */}
+      <Editor />
+      <Frames />
     </div>
   );
 }

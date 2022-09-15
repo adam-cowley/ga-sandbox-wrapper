@@ -1,20 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GraphAcademyProvider from './components/graphacademy/graph-academy.provider';
 
 import '@neo4j-ndl/base/lib/neo4j-ds-styles.css'
+import { store } from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <GraphAcademyProvider>
-      <App />
-    </GraphAcademyProvider>
+    <Provider store={store}>
+      <GraphAcademyProvider>
+        <App />
+      </GraphAcademyProvider>
+    </Provider>
   </React.StrictMode>
 );
 

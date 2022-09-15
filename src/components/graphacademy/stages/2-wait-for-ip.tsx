@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Loading from '../graphacademy/loading';
-import { Sandbox } from '../graphacademy/types/sandbox';
-import { getSandboxbyHashKey } from '../graphacademy/utils';
+import Loading from '../loading';
+import { Sandbox } from '../types/sandbox';
+import { getSandboxbyHashKey } from '../utils';
 
 interface WaitForSandboxIpProps {
     sandbox: Sandbox;
@@ -10,7 +10,7 @@ interface WaitForSandboxIpProps {
 }
 
 export function WaitForSandboxIp({ sandbox, setSandbox, setError }: WaitForSandboxIpProps) {
-    const maxAttempts = 3
+    const maxAttempts = process.env.REACT_APP_WAIT_IP_ATTEMPTS || 3
     const [ attempt, setAttempt ] = useState<number>(1)
 
     useEffect(() => {
